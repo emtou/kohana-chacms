@@ -56,7 +56,7 @@ class Model_Charougna_ChaCMS_Menu extends Jelly_Model
                             'name' => 'Menu code',
                             'rules' => array(
                                 array('max_length', array(':value', 64)),
-                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                                array('mb_check_encoding', array(':value', 'UTF-8')),
                             ),
                             'unique' => TRUE,
                           )),
@@ -68,7 +68,7 @@ class Model_Charougna_ChaCMS_Menu extends Jelly_Model
                             'name' => 'Menu label',
                             'rules' => array(
                                 array('max_length', array(':value', 128)),
-                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                                array('mb_check_encoding', array(':value', 'UTF-8')),
                                 array('not_empty'),
                             ),
                           )),

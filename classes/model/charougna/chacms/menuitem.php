@@ -73,7 +73,7 @@ class Model_Charougna_ChaCMS_MenuItem extends Jelly_Model
                             'name' => 'Item code',
                             'rules' => array(
                                 array('max_length', array(':value', 64)),
-                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                                array('mb_check_encoding', array(':value', 'UTF-8')),
                             ),
                           )),
               'label' =>  new Jelly_Field_String(array(
@@ -84,7 +84,7 @@ class Model_Charougna_ChaCMS_MenuItem extends Jelly_Model
                             'name' => 'Item label',
                             'rules' => array(
                                 array('max_length', array(':value', 128)),
-                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                                array('mb_check_encoding', array(':value', 'UTF-8')),
                                 array('not_empty'),
                             ),
                           )),
