@@ -31,37 +31,54 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/model/charougna/menu.php
  */
-class Model_Charougna_ChaCMS_Menu extends Sprig
+class Model_Charougna_ChaCMS_Menu extends Jelly_Model
 {
 
   /**
    * Fields declaration
    *
+   * @param Jelly_Meta $meta Access to Jelly framework
+   *
    * @return null
    */
-  protected function _init()
+  public static function initialize(Jelly_Meta $meta)
   {
-    $this->_table = ChaCMS::db_table_prefix().'menus';
-
-    $this->_fields += array(
-      'id'    => new Sprig_Field_Auto,
-      'code'  => new Sprig_Field_Char(array(
-                  'empty'  => TRUE,
-                  'label' => 'Menu code',
-                  'max_length' => 64,
-                  'unique' => TRUE,
-                 )),
-      'label' => new Sprig_Field_Char(array(
-                  'label' => 'Menu label',
-                  'max_length' => 128,
-                  'empty' => FALSE,
-                 )),
-      'items' => new Sprig_Field_HasMany(array(
-                  'label'       => 'Items attached to this menu',
-                  'model'       => 'ChaCMS_MenuItem',
-                  'foreign_key' => 'menu_id',
-                 )),
-    );
+    $meta->table(ChaCMS::db_table_prefix().'menus')
+         ->fields(
+             array(
+              'id' =>    new Jelly_Field_Primary,
+              'code' =>  new Jelly_Field_String(array(
+                            'filters' => array(
+                                array('trim'),
+                                array('UTF8::strtolower'),
+                            ),
+                            'label' => 'Menu code',
+                            'name' => 'Menu code',
+                            'rules' => array(
+                                array('max_length', array(':value', 64)),
+                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                            ),
+                            'unique' => TRUE,
+                          )),
+              'label' =>  new Jelly_Field_String(array(
+                            'filters' => array(
+                                array('trim'),
+                            ),
+                            'label' => 'Menu label',
+                            'name' => 'Menu label',
+                            'rules' => array(
+                                array('max_length', array(':value', 128)),
+                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                                array('not_empty'),
+                            ),
+                          )),
+              'items' =>  new Jelly_Field_HasMany(array(
+                            'foreign' => 'ChaCMS_MenuItem.menu_id',
+                            'label' => 'Items attached to this menu',
+                            'name' => 'Items attached to this menu',
+                          )),
+             )
+         );
   }
 
 } // End class Model_Charougna_ChaCMS_Menu

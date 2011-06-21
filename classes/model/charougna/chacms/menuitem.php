@@ -31,46 +31,69 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/model/charougna/chacms/menuitem.php
  */
-class Model_Charougna_ChaCMS_MenuItem extends Sprig
+class Model_Charougna_ChaCMS_MenuItem extends Jelly_Model
 {
 
   /**
    * Fields declaration
    *
+   * @param Jelly_Meta $meta Access to Jelly framework
+   *
    * @return null
+   *
+   * @todo create validation rule for positive integer in order field
    */
-  protected function _init()
+  public static function initialize(Jelly_Meta $meta)
   {
-    $this->_table = ChaCMS::db_table_prefix().'menuitems';
-
-    $this->_fields += array(
-      'id' =>        new Sprig_Field_Auto,
-      'menu' =>      new Sprig_Field_BelongsTo(array(
-                      'column' => 'menu_id',
-                      'empty'  => FALSE,
-                      'label'  => 'Menu the item is attached to',
-                      'model'  => 'ChaCMS_Menu',
-                      'null'   => FALSE,
-                     )),
-      'order' =>     new Sprig_Field_Integer(array(
-                      'default' => 1,
-                      'empty'   => FALSE,
-                      'label'   => 'Order inside the menu',
-                     )),
-      'code' =>      new Sprig_Field_Char(array(
-                      'empty'  => TRUE,
-                      'label' => 'Item code',
-                      'max_length' => 64,
-                     )),
-      'label' =>    new Sprig_Field_Char(array(
-                      'label' => "Item label",
-                      'max_length' => 128,
-                      'empty' => FALSE,
-                     )),
-      'published' => new Sprig_Field_Boolean(array(
-                      'label' => "Is the item published ?",
-                     )),
-    );
+    $meta->table(ChaCMS::db_table_prefix().'menuitems')
+         ->fields(
+             array(
+              'id' =>    new Jelly_Field_Primary,
+              'menu' =>  new Jelly_Field_BelongsTo(array(
+                            'column' => 'menu_id',
+                            'foreign' => 'ChaCMS_Menu.id',
+                            'rules' => array(
+                                array('not_empty'),
+                            ),
+                          )),
+              'order' =>  new Jelly_Field_Integer (array(
+                            'default' => 1,
+                            'label' => 'Order inside the menu',
+                            'name' => 'Order inside the menu',
+                            'rules' => array(
+                                array('not_empty'),
+                            ),
+                          )),
+              'code' =>  new Jelly_Field_String(array(
+                            'filters' => array(
+                                array('trim'),
+                                array('UTF8::strtolower'),
+                            ),
+                            'label' => 'Item code',
+                            'name' => 'Item code',
+                            'rules' => array(
+                                array('max_length', array(':value', 64)),
+                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                            ),
+                          )),
+              'label' =>  new Jelly_Field_String(array(
+                            'filters' => array(
+                                array('trim'),
+                            ),
+                            'label' => 'Item label',
+                            'name' => 'Item label',
+                            'rules' => array(
+                                array('max_length', array(':value', 128)),
+                                array('mb-check-encoding', array(':value', 'UTF-8')),
+                                array('not_empty'),
+                            ),
+                          )),
+              'published' => new Jelly_Field_Boolean(array(
+                            'label' => 'Is the item published ?',
+                            'name' => 'Is the item published ?',
+                          )),
+             )
+         );
   }
 
 } // End class Model_Charougna_ChaCMS_MenuItem
