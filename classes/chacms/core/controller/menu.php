@@ -70,10 +70,11 @@ abstract class ChaCMS_Core_Controller_Menu extends ChaCMS_Base_Controller
    *
    * @return null
    */
-  public function action_render($code)
+  public function action_render($code, $template = 'default')
   {
-    $params         = array();
-    $params['code'] = $code;
+    $params             = array();
+    $params['code']     = $code;
+    $params['template'] = $template;
 
     $this->_do_action($params);
   }
@@ -90,7 +91,17 @@ abstract class ChaCMS_Core_Controller_Menu extends ChaCMS_Base_Controller
    */
   protected function _action_render_init(array & $params)
   {
+    $params['menu'] = Jelly::query('ChaCMS_Menu')
+                        ->where('code', '=', $params['code'])
+                        ->limit(1)
+                        ->select();
 
+    if ( ! $params['menu']->loaded())
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t load ChaCMS Menu with code «'.$params['code'].'».'
+      );
+    }
   }
 
 
@@ -103,7 +114,12 @@ abstract class ChaCMS_Core_Controller_Menu extends ChaCMS_Base_Controller
    */
   protected function _action_render_get(array & $params)
   {
-    $this->response->body("TODO");
+    $body = '';
+
+    $template = View::factory('chacms/menu/'.$params['template']);
+    $template->menu = $params['menu'];
+
+    $this->response->body($template);
   }
 
 
