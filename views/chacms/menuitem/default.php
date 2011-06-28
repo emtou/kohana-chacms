@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares default view for ChaCMS menus
+ * Declares default view for ChaCMS menu items
  *
  * PHP version 5
  *
@@ -11,18 +11,10 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/views/chacms/menu/default.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/views/chacms/menuitem/default.php
  * @since     2011-06-20
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
-echo '<ul>';
-
-foreach ($menu->items as $item)
-{
-  echo '<li>';
-  echo View::factory('chacms/menuitem/default')->set('item', $item);
-  echo '</li>';
-}
-echo '</ul>';
+echo $item->label;
