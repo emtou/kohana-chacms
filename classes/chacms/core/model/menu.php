@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares Charougna_ChaCMS_Menu model
+ * Declares ChaCMS_Core_Model_Menu model
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/model/charougna/menu.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/menu.php
  * @since     2011-06-20
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides Charougna_ChaCMS_Menu model
+ * Provides ChaCMS_Core_Model_Menu model
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/model/charougna/menu.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/menu.php
  */
-class Model_Charougna_ChaCMS_Menu extends Jelly_Model
+class ChaCMS_Core_Model_Menu extends Jelly_Model
 {
 
   /**
@@ -81,4 +81,4 @@ class Model_Charougna_ChaCMS_Menu extends Jelly_Model
          );
   }
 
-} // End class Model_Charougna_ChaCMS_Menu
+} // End class ChaCMS_Core_Model_Menu
