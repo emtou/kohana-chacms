@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares Charougna_ChaCMS helper
+ * Declares ChaCMS_Core helper
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/charougna/chacms.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core.php
  * @since     2011-06-20
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides Charougna_ChaCMS helper
+ * Provides ChaCMS_Core helper
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/charougna/chacms.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core.php
  */
-class Charougna_ChaCMS
+class ChaCMS_Core
 {
 
   /**
@@ -46,4 +46,4 @@ class Charougna_ChaCMS
     return 'cms_';
   }
 
-} // End class Charougna_ChaCMS
+} // End class ChaCMS_Core

@@ -31,7 +31,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/model/chacms/menuitem.php
  */
-class Model_ChaCMS_MenuItem extends Model_Charougna_ChaCMS_MenuItem
+class Model_ChaCMS_MenuItem extends ChaCMS_Core_Model_MenuItem
 {
 
 } // End class Model_ChaCMS_MenuItem
