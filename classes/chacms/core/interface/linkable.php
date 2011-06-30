@@ -34,4 +34,11 @@ defined('SYSPATH') OR die('No direct access allowed.');
 interface ChaCMS_Core_Interface_Linkable
 {
 
+  /**
+   * Fetches this object URL
+   *
+   * @return string url
+   */
+  public function url();
+
 } // End class ChaCMS_Core_Interface_Linkable
