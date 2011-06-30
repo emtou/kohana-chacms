@@ -33,5 +33,35 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
 {
+  protected $_chacms_model = NULL;
+
+
+  /**
+   * Gets or sets ChaCMS_Model aggregate
+   *
+   * @param ChaCMS_Model &$chacms_model optional agregate (in set mode)
+   *
+   * @return ChaCMS_Model|null agregate (in get mode)
+   *
+   * @see ChaCMS_Core_Interface_Linker::chacms_model()
+   */
+  public function chacms_model(ChaCMS_Model & $chacms_model = NULL)
+  {
+    if ($chacms_model == NULL)
+    {
+      // get mode
+      if ($this->_chacms_model == NULL)
+      {
+        throw new ChaCMS_Exception(
+          'Can\'t find ChaCMS_Model aggregate: aggregate hasn\'t been set before use.'
+        );
+      }
+
+      return $this->_chacms_model;
+    }
+
+    // set mode
+    $this->_chacms_model = $chacms_model;
+  }
 
 } // End class ChaCMS_Core_Model_Jelly
