@@ -31,7 +31,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/jelly.php
  */
-abstract class ChaCMS_Core_Model_Jelly
+abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
 {
 
 } // End class ChaCMS_Core_Model_Jelly
