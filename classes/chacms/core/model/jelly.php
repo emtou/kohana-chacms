@@ -66,4 +66,49 @@ abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
     $this->_chacms_model = $chacms_model;
   }
 
+
+  /**
+   * Gets or sets the linkee
+   *
+   * @param ChaCMS_Interface_Linkable &$linkee optional linkee (in set mode)
+   *
+   * @return ChaCMS_Interface_Linkable|null linkee (in get mode)
+   *
+   * @see ChaCMS_Core_Interface_MonoLinker::linkee()
+   */
+  public function linkee(ChaCMS_Interface_Linkable & $linkee = NULL)
+  {
+    $mode = ($linkee == NULL)?'get':'set';
+
+    if ( ! $this instanceof ChaCMS_Interface_MonoLinker)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t '.$mode.' linkee: this object doesn\'t accept any linkee.'
+      );
+    }
+
+    if ( ! $this instanceof ChaCMS_Interface_Linker)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t '.$mode.' linkee: this object doesn\'t accept an unique linkee.'
+      );
+    }
+
+    if ( ! $this->_chacms_model instanceof ChaCMS_Model)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t '.$mode.' linkee: ChaCMS_Model aggregate hasn\'t been set.'
+      );
+    }
+
+    if ($mode == 'get')
+    {
+      return $this->_chacms_model->link_manager()->get_linkee($this);
+    }
+
+    // set mode
+    return $this->_chacms_model->link_manager()->set_linkee($this, $linkee);
+
+  }
+
 } // End class ChaCMS_Core_Model_Jelly
