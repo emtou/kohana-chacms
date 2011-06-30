@@ -34,4 +34,16 @@ defined('SYSPATH') OR die('No direct access allowed.');
 abstract class ChaCMS_Core_Model_DummyLinkee extends ChaCMS_Model_Kohana implements ChaCMS_Interface_Linkable
 {
 
+  /**
+   * Fetches this object URL (hash sign)
+   *
+   * @return string a hash sign
+   *
+   * @see ChaCMS_Interface_Linkable::url()
+   */
+  public function url()
+  {
+    return '#';
+  }
+
 } // End class ChaCMS_Core_Model_DummyLinkee
