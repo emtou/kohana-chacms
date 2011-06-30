@@ -44,6 +44,8 @@ abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
    * @return ChaCMS_Model|null agregate (in get mode)
    *
    * @see ChaCMS_Core_Interface_Linker::chacms_model()
+   *
+   * @throws ChaCMS_Exception Can't find ChaCMS_Model aggregate: aggregate hasn\'t been set before use.
    */
   public function chacms_model(ChaCMS_Model & $chacms_model = NULL)
   {
