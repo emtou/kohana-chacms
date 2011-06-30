@@ -81,4 +81,35 @@ class ChaCMS_Core_Model_Menu extends ChaCMS_Model_Jelly
          );
   }
 
+
+  /**
+   * Deletes this menu and all its elements
+   *
+   * @return  boolean
+   */
+  public function delete()
+  {
+    $db = Database::instance($this->meta()->db());
+
+    $db->begin();
+
+    try
+    {
+      foreach ($this->items as $item)
+      {
+        $item->delete();
+      }
+      parent::delete();
+
+      $db->commit();
+    }
+    catch (Database_Exception $e)
+    {
+      $db->rollback();
+      return FALSE;
+    }
+
+    return TRUE;
+  }
+
 } // End class ChaCMS_Core_Model_Menu
