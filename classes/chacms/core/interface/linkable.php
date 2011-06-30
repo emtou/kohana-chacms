@@ -35,7 +35,7 @@ interface ChaCMS_Core_Interface_Linkable
 {
 
   /**
-   * Fetches this object URL
+   * Fetches this linkee URL
    *
    * @return string url
    */

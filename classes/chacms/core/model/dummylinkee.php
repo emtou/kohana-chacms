@@ -39,7 +39,7 @@ abstract class ChaCMS_Core_Model_DummyLinkee extends ChaCMS_Model_Kohana impleme
    *
    * @return string a hash sign
    *
-   * @see ChaCMS_Interface_Linkable::url()
+   * @see ChaCMS_Interface_Linkable::linkee_url()
    */
   public function linkee_url()
   {
