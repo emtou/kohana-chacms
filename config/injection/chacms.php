@@ -30,8 +30,19 @@ return array(
         'shared' => TRUE,
       ),
     ),
+
+    'model' => array(
+      'dummylinkee' => array(
+        '_settings' => array(
+          'arguments' => array('chacms_dummylinkee'),
+          'class'     => 'Model',
+          'constructor' => 'factory',
+        ),
+      ),
+    ),
   ),
 
+  // @todo refactor Menu and MenuItem models to chacms prefix
   'model' => array(
     '_settings' => array(
       'class'       => 'Jelly',
