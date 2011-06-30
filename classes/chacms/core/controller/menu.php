@@ -116,8 +116,9 @@ abstract class ChaCMS_Core_Controller_Menu extends ChaCMS_Base_Controller
   {
     $body = '';
 
-    $template = View::factory('chacms/menu/'.$params['template']);
-    $template->menu = $params['menu'];
+    $template           = View::factory('chacms/menu/'.$params['template']);
+    $template->menu     = $params['menu'];
+    $template->injector = $this->injector();
 
     $this->response->body($template);
   }
