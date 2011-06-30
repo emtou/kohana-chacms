@@ -33,5 +33,13 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 interface ChaCMS_Core_Interface_MonoLinker extends ChaCMS_Interface_Linker
 {
+  /**
+   * Gets or sets the linkee
+   *
+   * @param ChaCMS_Interface_Linkable &$linkee optional linkee (in set mode)
+   *
+   * @return ChaCMS_Interface_Linkable|null linkee (in get mode)
+   */
+  public function linkee(ChaCMS_Interface_Linkable & $linkee = NULL);
 
 } // End class ChaCMS_Core_Interface_MonoLinker
