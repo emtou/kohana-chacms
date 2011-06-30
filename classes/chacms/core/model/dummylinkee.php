@@ -46,4 +46,17 @@ abstract class ChaCMS_Core_Model_DummyLinkee extends ChaCMS_Model_Kohana impleme
     return '#';
   }
 
+
+  /**
+   * Fetches this object title (Dummy link)
+   *
+   * @return string Dummy link
+   *
+   * @see ChaCMS_Interface_Linkable::linkee_title()
+   */
+  public function linkee_title()
+  {
+    return 'Dummy link';
+  }
+
 } // End class ChaCMS_Core_Model_DummyLinkee
