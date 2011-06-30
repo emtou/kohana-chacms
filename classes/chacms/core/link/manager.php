@@ -34,4 +34,18 @@ defined('SYSPATH') OR die('No direct access allowed.');
 abstract class ChaCMS_Core_Link_Manager
 {
 
+  /**
+   * Gets the linkee of a linker occurence
+   *
+   * @param ChaCMS_Interface_MonoLinker &$linker linker
+   *
+   * @return ChaCMS_Interface_Linkable linkee
+   *
+   * @todo fetch the linkee or return a dummy linkee
+   */
+  public function get_linkee(ChaCMS_Interface_MonoLinker & $linker)
+  {
+    return NULL;
+  }
+
 } // End class ChaCMS_Core_Link_Manager
