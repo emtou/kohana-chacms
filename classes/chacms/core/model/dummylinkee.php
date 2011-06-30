@@ -41,7 +41,7 @@ abstract class ChaCMS_Core_Model_DummyLinkee extends ChaCMS_Model_Kohana impleme
    *
    * @see ChaCMS_Interface_Linkable::url()
    */
-  public function url()
+  public function linkee_url()
   {
     return '#';
   }

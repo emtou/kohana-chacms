@@ -39,6 +39,6 @@ interface ChaCMS_Core_Interface_Linkable
    *
    * @return string url
    */
-  public function url();
+  public function linkee_url();
 
 } // End class ChaCMS_Core_Interface_Linkable
