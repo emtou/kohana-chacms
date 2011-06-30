@@ -39,11 +39,11 @@ abstract class ChaCMS_Core_Model
   /**
    * Creates this occurence with optional link manager aggregate
    *
-   * @param ChaCMS_Link_Manager &$link_manager optional agregate
+   * @param ChaCMS_Link_Manager $link_manager optional agregate
    *
    * @return null
    */
-  public function __construct(ChaCMS_Link_Manager & $link_manager = NULL)
+  public function __construct(ChaCMS_Link_Manager $link_manager = NULL)
   {
     if ($link_manager instanceof ChaCMS_Link_Manager)
     {
@@ -55,13 +55,13 @@ abstract class ChaCMS_Core_Model
   /**
    * Gets or sets ChaCMS_Link_Manager aggregate
    *
-   * @param ChaCMS_Link_Manager &$link_manager optional agregate (in set mode)
+   * @param ChaCMS_Link_Manager $link_manager optional agregate (in set mode)
    *
    * @return ChaCMS_Link_Manager|null agregate (in get mode)
    *
    * @throws ChaCMS_Exception Can't find link manager aggregate: aggregate hasn\'t been set before use.
    */
-  public function link_manager(ChaCMS_Link_Manager & $link_manager = NULL)
+  public function link_manager(ChaCMS_Link_Manager $link_manager = NULL)
   {
     if ($link_manager == NULL)
     {
