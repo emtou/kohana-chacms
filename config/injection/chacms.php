@@ -32,11 +32,19 @@ return array(
     ),
 
     'model' => array(
+      '_settings' => array(
+        'arguments'   => array('%chacms.link_manager%'),
+        'constructor' => '',
+        'class'       => 'ChaCMS_Model',
+        'shared'      => TRUE,
+      ),
+
       'dummylinkee' => array(
         '_settings' => array(
           'arguments' => array('chacms_dummylinkee'),
           'class'     => 'Model',
           'constructor' => 'factory',
+          'shared'      => FALSE,
         ),
       ),
     ),
