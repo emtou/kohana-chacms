@@ -31,7 +31,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/link/manager.php
  */
-abstract class ChaCMS_Core_Link_Manager
+abstract class ChaCMS_Core_Link_Manager extends ChaCMS_Injector
 {
 
   /**
