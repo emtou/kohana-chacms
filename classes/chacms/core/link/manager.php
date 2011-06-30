@@ -48,4 +48,20 @@ abstract class ChaCMS_Core_Link_Manager
     return NULL;
   }
 
+
+  /**
+   * Sets the linkee of a linker occurence
+   *
+   * @param ChaCMS_Interface_MonoLinker &$linker linker
+   * @param ChaCMS_Interface_Linkee     &$linkee linkee
+   *
+   * @return null
+   *
+   * @todo set the linkee
+   */
+  public function set_linkee(ChaCMS_Interface_MonoLinker & $linker, ChaCMS_Interface_Linkee & $linkee)
+  {
+    return NULL;
+  }
+
 } // End class ChaCMS_Core_Link_Manager
