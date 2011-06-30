@@ -33,6 +33,16 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Link_Manager extends ChaCMS_Injector
 {
+  /**
+   * Creates this instance
+   *
+   * @return null
+   */
+  public function __construct()
+  {
+
+  }
+
 
   /**
    * Gets the linkee of a linker occurence
