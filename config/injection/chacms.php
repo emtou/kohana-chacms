@@ -18,6 +18,20 @@
 defined('SYSPATH') OR die('No direct access allowed.');
 
 return array(
+  'chacms' => array(
+    '_settings' => array(
+      'arguments' => array(),
+      'constructor' => '',
+    ),
+
+    'link_manager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_Link_Manager',
+        'shared' => TRUE,
+      ),
+    ),
+  ),
+
   'model' => array(
     '_settings' => array(
       'class'       => 'Jelly',
