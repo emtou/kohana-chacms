@@ -41,4 +41,12 @@ interface ChaCMS_Core_Interface_Linkable
    */
   public function linkee_url();
 
+
+  /**
+   * Fetches this linkee title
+   *
+   * @return string title
+   */
+  public function linkee_title();
+
 } // End class ChaCMS_Core_Interface_Linkable
