@@ -33,5 +33,13 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 interface ChaCMS_Core_Interface_Linker
 {
+  /**
+   * Gets or sets ChaCMS_Model aggregate
+   *
+   * @param ChaCMS_Model &$chacms_model optional agregate (in set mode)
+   *
+   * @return ChaCMS_Model|null agregate (in get mode)
+   */
+  public function chacms_model(ChaCMS_Model & $chacms_model = NULL);
 
 } // End class ChaCMS_Core_Interface_Linker
