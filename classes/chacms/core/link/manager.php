@@ -47,15 +47,23 @@ abstract class ChaCMS_Core_Link_Manager extends ChaCMS_Injector
   /**
    * Gets the linkee of a linker occurence
    *
+   * returns a dummy linkee if no linkee found
+   *
    * @param ChaCMS_Interface_MonoLinker &$linker linker
    *
    * @return ChaCMS_Interface_Linkable linkee
    *
-   * @todo fetch the linkee or return a dummy linkee
+   * @todo fetch the linkee
+   * @todo give a MonoLinker instance configuration parameter for mandatory/optional linkee handling
    */
   public function get_linkee(ChaCMS_Interface_MonoLinker & $linker)
   {
-    return NULL;
+    $hack_no_linkee = TRUE;
+
+    if ($hack_no_linkee)
+    {
+      return $this->injector()->get('chacms.model.dummylinkee');
+    }
   }
 
 
