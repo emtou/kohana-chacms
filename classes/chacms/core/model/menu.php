@@ -31,7 +31,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/menu.php
  */
-class ChaCMS_Core_Model_Menu extends Jelly_Model
+class ChaCMS_Core_Model_Menu extends ChaCMS_Model_Jelly
 {
 
   /**
@@ -79,6 +79,37 @@ class ChaCMS_Core_Model_Menu extends Jelly_Model
                           )),
              )
          );
+  }
+
+
+  /**
+   * Deletes this menu and all its elements
+   *
+   * @return  boolean
+   */
+  public function delete()
+  {
+    $db = Database::instance($this->meta()->db());
+
+    $db->begin();
+
+    try
+    {
+      foreach ($this->items as $item)
+      {
+        $item->delete();
+      }
+      parent::delete();
+
+      $db->commit();
+    }
+    catch (Database_Exception $e)
+    {
+      $db->rollback();
+      return FALSE;
+    }
+
+    return TRUE;
   }
 
 } // End class ChaCMS_Core_Model_Menu

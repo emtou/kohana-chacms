@@ -19,6 +19,9 @@ Requires Kohana 3.1.x
 
 * enable the module in your bootstrap
 
+* install my [kohana-dispatcher module](https://github.com/emtou/kohana-dispatcher).
+
+* install the [kohana-dependencies module](https://github.com/synapsestudios/kohana-dependencies).
 
 # Usage
 
