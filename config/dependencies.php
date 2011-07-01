@@ -47,25 +47,21 @@ return array(
           'shared'      => FALSE,
         ),
       ),
-    ),
-  ),
 
-  // @todo refactor Menu and MenuItem models to chacms prefix
-  'model' => array(
-    '_settings' => array(
-      'class'       => 'Jelly',
-      'constructor' => 'factory',
-    ),
-
-    'chacms_menu' => array(
-      '_settings' => array(
-        'arguments' => array('chacms_menu'),
+      'menu' => array(
+        '_settings' => array(
+          'arguments'   => array('chacms_menu'),
+          'class'       => 'Jelly',
+          'constructor' => 'factory',
+        ),
       ),
-    ),
 
-    'chacms_menuitem' => array(
-      '_settings' => array(
-        'arguments' => array('chacms_menuitem'),
+      'menuitem' => array(
+        '_settings' => array(
+          'arguments'   => array('chacms_menuitem'),
+          'class'       => 'Jelly',
+          'constructor' => 'factory',
+        ),
       ),
     ),
   ),
