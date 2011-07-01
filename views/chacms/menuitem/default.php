@@ -17,4 +17,10 @@
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
-echo $item->label;
+echo HTML::anchor(
+        $item->linkee()->linkee_url(),
+        $item->label,
+        array(
+          'title' => $item->linkee()->linkee_title(),
+        )
+     );
