@@ -75,6 +75,15 @@ return array(
           ),
         ),
       ),
+
+      'page' => array(
+        '_settings' => array(
+          'arguments' => array('chacms_page'),
+          'class'     => 'Model',
+          'constructor' => 'factory',
+          'shared'      => FALSE,
+        ),
+      ),
     ),
   ),
 );
