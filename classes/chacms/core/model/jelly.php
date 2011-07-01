@@ -111,4 +111,32 @@ abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
 
   }
 
+
+  /**
+   * Global setter
+   *
+   * only treats "container" setter (passes on to the chacms model)
+   *
+   * @param string $attr  attribute name to set
+   * @param mixed  $value value to set
+   *
+   * @return null
+   */
+  public function __set($attr, $value)
+  {
+    switch ($attr) {
+      case 'container';
+        $this->container = $value;
+        if ($this->_chacms_model instanceof ChaCMS_Model)
+        {
+          $this->_chacms_model->container = $value;
+        }
+      break;
+
+      default :
+        parent::$attr = $value;
+      break;
+    }
+  }
+
 } // End class ChaCMS_Core_Model_Jelly
