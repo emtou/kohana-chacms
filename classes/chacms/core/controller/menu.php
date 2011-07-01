@@ -91,7 +91,8 @@ abstract class ChaCMS_Core_Controller_Menu extends ChaCMS_Base_Controller
    */
   protected function _action_render_init(array & $params)
   {
-    $params['menu'] = Jelly::query('ChaCMS_Menu')
+    $params['menu'] = $this->container->get('jelly.request')
+                        ->query('chacms.model.menu')
                         ->where('code', '=', $params['code'])
                         ->limit(1)
                         ->select();
