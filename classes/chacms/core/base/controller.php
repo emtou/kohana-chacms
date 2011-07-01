@@ -34,7 +34,6 @@ defined('SYSPATH') OR die('No direct access allowed.');
 abstract class ChaCMS_Core_Base_Controller extends Controller_Dispatcher implements ChaCMS_Core_Interface_Injector
 {
   protected $_injector        = NULL;
-  protected $_injector_config = 'injection/chacms';
 
 
   /**
@@ -56,7 +55,7 @@ abstract class ChaCMS_Core_Base_Controller extends Controller_Dispatcher impleme
       if ($this->_injector == NULL)
       {
         $definitions     = Dependency_Definition_List::factory()
-                              ->from_array(Kohana::config($this->_injector_config)->as_array());
+                              ->from_array(Kohana::config('dependencies')->as_array());
         $this->_injector = new Dependency_Container($definitions);
       }
 
