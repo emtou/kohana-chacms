@@ -134,7 +134,7 @@ abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
       break;
 
       default :
-        parent::$attr = $value;
+        parent::__set($attr, $value);
       break;
     }
   }
