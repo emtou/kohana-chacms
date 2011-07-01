@@ -31,3 +31,4 @@ todo...
 # Versions
 
 * 0.1 (2011-06-28): initial menu and menuitems
+* 0.2 (2011-07-01): use global dependency injection container and handles dummy links in menu items
