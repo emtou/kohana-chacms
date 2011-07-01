@@ -61,6 +61,9 @@ return array(
           'arguments'   => array('chacms_menuitem'),
           'class'       => 'Jelly',
           'constructor' => 'factory',
+          'methods'     => array(
+            array('chacms_model', array('%chacms.model%')),
+          ),
         ),
       ),
     ),
