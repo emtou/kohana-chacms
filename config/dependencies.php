@@ -39,6 +39,15 @@ return array(
         'shared'      => TRUE,
       ),
 
+      'domain' => array(
+        '_settings' => array(
+          'arguments' => array('chacms_domain'),
+          'class'     => 'Model',
+          'constructor' => 'factory',
+          'shared'      => FALSE,
+        ),
+      ),
+
       'dummylinkee' => array(
         '_settings' => array(
           'arguments' => array('chacms_dummylinkee'),
