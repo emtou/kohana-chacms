@@ -81,4 +81,31 @@ abstract class ChaCMS_Core_Model
   }
 
 
+  /**
+   * Global setter
+   *
+   * only treats "container" setter (passes on to the link manager)
+   *
+   * @param string $attr  attribute name to set
+   * @param mixed  $value value to set
+   *
+   * @return null
+   */
+  public function __set($attr, $value)
+  {
+    switch ($attr) {
+      case 'container';
+        $this->container = $value;
+        if ($this->_link_manager instanceof ChaCMS_Link_Manager)
+        {
+          $this->_link_manager->container = $value;
+        }
+      break;
+
+      default :
+        parent::$attr = $value;
+      break;
+    }
+  }
+
 } // End class ChaCMS_Core_Model
