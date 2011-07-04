@@ -52,9 +52,6 @@ class ChaCMS_Core_Model_MenuItem extends ChaCMS_Base_Model_Jelly implements ChaC
               'menu' =>  new Jelly_Field_BelongsTo(array(
                             'column' => 'menu_id',
                             'foreign' => 'ChaCMS_Menu.id',
-                            'rules' => array(
-                                array('not_empty'),
-                            ),
                           )),
               'order' =>  new Jelly_Field_Integer (array(
                             'default' => 1,
