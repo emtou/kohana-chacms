@@ -33,58 +33,91 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Meta_Model
 {
-  protected $_link_manager = NULL;
+  protected $_domainmanager = NULL;
+  protected $_linkmanager   = NULL;
 
 
   /**
    * Creates this occurence with optional link manager aggregate
    *
-   * @param ChaCMS_Link_Manager $link_manager optional agregate
+   * @param ChaCMS_Meta_DomainManager $domainmanager mandatory domain manager aggregate
+   * @param ChaCMS_Meta_LinkManager   $linkmanager   mandatory link manager agregate
    *
    * @return null
    */
-  public function __construct(ChaCMS_Meta_LinkManager $link_manager = NULL)
+  public function __construct(ChaCMS_Meta_DomainManager $domainmanager, ChaCMS_Meta_LinkManager $linkmanager)
   {
-    if ($link_manager instanceof ChaCMS_Meta_LinkManager)
+    $this->domainmanager($domainmanager);
+
+    if ($linkmanager instanceof ChaCMS_Meta_LinkManager)
     {
-      $this->link_manager($link_manager);
+      $this->linkmanager($linkmanager);
     }
+  }
+
+
+  /**
+   * Gets or sets meta domain manager aggregate
+   *
+   * @param ChaCMS_Meta_DomainManager $domainmanager optional domain manager aggregate (in set mode)
+   *
+   * @return ChaCMS_Meta_DomainManager|null aggregate (in get mode)
+   *
+   * @throws ChaCMS_Exception Can't find meta domain manager aggregate: aggregate hasn\'t been set before use.
+   */
+  public function domainmanager(ChaCMS_Meta_DomainManager $domainmanager = NULL)
+  {
+    if ($domainmanager == NULL)
+    {
+      // get mode
+      if ($this->_domainmanager == NULL)
+      {
+        throw new ChaCMS_Exception(
+          'Can\'t find domain manager aggregate: aggregate hasn\'t been set before use.'
+        );
+      }
+
+      return $this->_domainmanager;
+    }
+
+    // set mode
+    $this->_domainmanager = $domainmanager;
   }
 
 
   /**
    * Gets or sets meta linkmanager aggregate
    *
-   * @param ChaCMS_Meta_LinkManager $link_manager optional agregate (in set mode)
+   * @param ChaCMS_Meta_LinkManager $linkmanager optional agregate (in set mode)
    *
    * @return ChaCMS_Meta_LinkManager|null agregate (in get mode)
    *
    * @throws ChaCMS_Exception Can't find meta link manager aggregate: aggregate hasn\'t been set before use.
    */
-  public function link_manager(ChaCMS_Meta_LinkManager $link_manager = NULL)
+  public function linkmanager(ChaCMS_Meta_LinkManager $linkmanager = NULL)
   {
-    if ($link_manager == NULL)
+    if ($linkmanager == NULL)
     {
       // get mode
-      if ($this->_link_manager == NULL)
+      if ($this->_linkmanager == NULL)
       {
         throw new ChaCMS_Exception(
           'Can\'t find link manager aggregate: aggregate hasn\'t been set before use.'
         );
       }
 
-      return $this->_link_manager;
+      return $this->_linkmanager;
     }
 
     // set mode
-    $this->_link_manager = $link_manager;
+    $this->_linkmanager = $linkmanager;
   }
 
 
   /**
    * Global setter
    *
-   * only treats "container" setter (passes on to the link manager)
+   * only treats "container" setter (passes on to the domain and link managers)
    *
    * @param string $attr  attribute name to set
    * @param mixed  $value value to set
@@ -96,9 +129,13 @@ abstract class ChaCMS_Core_Meta_Model
     switch ($attr) {
       case 'container';
         $this->container = $value;
-        if ($this->_link_manager instanceof ChaCMS_Meta_LinkManager)
+        if ($this->_linkmanager instanceof ChaCMS_Meta_LinkManager)
         {
-          $this->_link_manager->container = $value;
+          $this->_linkmanager->container = $value;
+        }
+        if ($this->_domainmanager instanceof ChaCMS_Meta_DomainManager)
+        {
+          $this->_domainmanager->container = $value;
         }
       break;
 

@@ -27,10 +27,20 @@ return array(
     'meta' => array(
       'model' => array(
         '_settings' => array(
-          'arguments'   => array('%chacms.meta.linkmanager%'),
+          'arguments'   => array(
+                              '%chacms.meta.domainmanager%',
+                              '%chacms.meta.linkmanager%'
+                           ),
           'constructor' => '',
           'class'       => 'ChaCMS_Meta_Model',
           'shared'      => TRUE,
+        ),
+      ),
+
+      'domainmanager' => array(
+        '_settings' => array(
+          'class'  => 'ChaCMS_Meta_DomainManager',
+          'shared' => TRUE,
         ),
       ),
 
