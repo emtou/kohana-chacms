@@ -72,10 +72,9 @@ class ChaCMS_Core_Model_Menu extends ChaCMS_Base_Model_Jelly
                                 array('not_empty'),
                             ),
                           )),
-              'items' =>  new Jelly_Field_HasMany(array(
-                            'foreign' => 'ChaCMS_MenuItem.menu_id',
-                            'label' => 'Items attached to this menu',
-                            'name' => 'Items attached to this menu',
+              'rootitem' => new Jelly_Field_BelongsTo(array(
+                            'column'  => 'rootitem_id',
+                            'foreign' => 'ChaCMS_MenuItem.id',
                           )),
              )
          );
@@ -95,10 +94,8 @@ class ChaCMS_Core_Model_Menu extends ChaCMS_Base_Model_Jelly
 
     try
     {
-      foreach ($this->items as $item)
-      {
-        $item->delete();
-      }
+      $this->rootitem->delete();
+
       parent::delete();
 
       $db->commit();
