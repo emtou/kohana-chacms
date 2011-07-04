@@ -75,6 +75,10 @@ abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
    * @return ChaCMS_Interface_Linkable|null linkee (in get mode)
    *
    * @see ChaCMS_Core_Interface_MonoLinker::linkee()
+   *
+   * @throws ChaCMS_Exception Can't :get_or_set linkee: this model doesn't accept any linkee.
+   * @throws ChaCMS_Exception Can't :get_or_set linkee: this model doesn't accept an unique linkee.
+   * @throws ChaCMS_Exception Can't :get_or_set linkee: meta model aggregate hasn't been set.
    */
   public function linkee(ChaCMS_Interface_Linkable & $linkee = NULL)
   {
@@ -83,21 +87,24 @@ abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
     if ( ! $this instanceof ChaCMS_Interface_MonoLinker)
     {
       throw new ChaCMS_Exception(
-        'Can\'t '.$mode.' linkee: this object doesn\'t accept any linkee.'
+        'Can\'t :get_or_set linkee: this model doesn\'t accept any linkee.',
+        array(':get_or_set', $mode)
       );
     }
 
     if ( ! $this instanceof ChaCMS_Interface_Linker)
     {
       throw new ChaCMS_Exception(
-        'Can\'t '.$mode.' linkee: this object doesn\'t accept an unique linkee.'
+        'Can\'t :get_or_set linkee: this model doesn\'t accept an unique linkee.',
+        array(':get_or_set', $mode)
       );
     }
 
     if ( ! $this->_meta_model instanceof ChaCMS_Meta_Model)
     {
       throw new ChaCMS_Exception(
-        'Can\'t '.$mode.' linkee: ChaCMS_Model aggregate hasn\'t been set.'
+        'Can\'t :get_or_set linkee: meta model aggregate hasn\'t been set.',
+        array(':get_or_set', $mode)
       );
     }
 
