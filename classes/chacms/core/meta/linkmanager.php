@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares ChaCMS_Core_Link_Manager
+ * Declares ChaCMS_Core_Meta_LinkManager
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/link/manager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/linkmanager.php
  * @since     2011-06-30
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides ChaCMS_Core_Link_Manager
+ * Provides ChaCMS_Core_Meta_LinkManager
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/link/manager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/linkmanager.php
  */
-abstract class ChaCMS_Core_Link_Manager
+abstract class ChaCMS_Core_Meta_LinkManager
 {
   /**
    * Creates this instance
@@ -82,4 +82,4 @@ abstract class ChaCMS_Core_Link_Manager
     return NULL;
   }
 
-} // End class ChaCMS_Core_Link_Manager
+} // End class ChaCMS_Core_Meta_LinkManager

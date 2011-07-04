@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares ChaCMS_Link_Manager
+ * Declares ChaCMS_Base_Model_Jelly
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/link/manager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/base/model/jelly.php
  * @since     2011-06-30
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides ChaCMS_Link_Manager
+ * Provides ChaCMS_Base_Model_Jelly
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/link/manager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/base/model/jelly.php
  */
-class ChaCMS_Link_Manager extends ChaCMS_Core_Link_Manager
+class ChaCMS_Base_Model_Jelly extends ChaCMS_Core_Base_Model_Jelly
 {
 
-} // End class ChaCMS_Link_Manager
+} // End class ChaCMS_Base_Model_Jelly
