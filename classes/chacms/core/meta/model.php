@@ -43,9 +43,9 @@ abstract class ChaCMS_Core_Meta_Model
    *
    * @return null
    */
-  public function __construct(ChaCMS_Link_Manager $link_manager = NULL)
+  public function __construct(ChaCMS_Meta_LinkManager $link_manager = NULL)
   {
-    if ($link_manager instanceof ChaCMS_Link_Manager)
+    if ($link_manager instanceof ChaCMS_Meta_LinkManager)
     {
       $this->link_manager($link_manager);
     }
@@ -53,15 +53,15 @@ abstract class ChaCMS_Core_Meta_Model
 
 
   /**
-   * Gets or sets ChaCMS_Link_Manager aggregate
+   * Gets or sets meta linkmanager aggregate
    *
-   * @param ChaCMS_Link_Manager $link_manager optional agregate (in set mode)
+   * @param ChaCMS_Meta_LinkManager $link_manager optional agregate (in set mode)
    *
-   * @return ChaCMS_Link_Manager|null agregate (in get mode)
+   * @return ChaCMS_Meta_LinkManager|null agregate (in get mode)
    *
-   * @throws ChaCMS_Exception Can't find link manager aggregate: aggregate hasn\'t been set before use.
+   * @throws ChaCMS_Exception Can't find meta link manager aggregate: aggregate hasn\'t been set before use.
    */
-  public function link_manager(ChaCMS_Link_Manager $link_manager = NULL)
+  public function link_manager(ChaCMS_Meta_LinkManager $link_manager = NULL)
   {
     if ($link_manager == NULL)
     {
@@ -96,7 +96,7 @@ abstract class ChaCMS_Core_Meta_Model
     switch ($attr) {
       case 'container';
         $this->container = $value;
-        if ($this->_link_manager instanceof ChaCMS_Link_Manager)
+        if ($this->_link_manager instanceof ChaCMS_Meta_LinkManager)
         {
           $this->_link_manager->container = $value;
         }

@@ -24,20 +24,20 @@ return array(
       'constructor' => '',
     ),
 
-    'link_manager' => array(
-      '_settings' => array(
-        'class'  => 'ChaCMS_Link_Manager',
-        'shared' => TRUE,
-      ),
-    ),
-
     'meta' => array(
       'model' => array(
         '_settings' => array(
-          'arguments'   => array('%chacms.link_manager%'),
+          'arguments'   => array('%chacms.meta.linkmanager%'),
           'constructor' => '',
           'class'       => 'ChaCMS_Meta_Model',
           'shared'      => TRUE,
+        ),
+      ),
+
+      'linkmanager' => array(
+        '_settings' => array(
+          'class'  => 'ChaCMS_Meta_LinkManager',
+          'shared' => TRUE,
         ),
       ),
     ),
