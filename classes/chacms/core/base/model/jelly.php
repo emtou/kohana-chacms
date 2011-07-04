@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares ChaCMS_Core_Model_Jelly
+ * Declares ChaCMS_Core_Base_Model_Jelly
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/jelly.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/base/model/jelly.php
  * @since     2011-06-30
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides ChaCMS_Core_Model_Jelly
+ * Provides ChaCMS_Core_Base_Model_Jelly
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/jelly.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/base/model/jelly.php
  */
-abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
+abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
 {
   protected $_meta_model = NULL;
 
@@ -139,4 +139,4 @@ abstract class ChaCMS_Core_Model_Jelly extends Jelly_Model
     }
   }
 
-} // End class ChaCMS_Core_Model_Jelly
+} // End class ChaCMS_Core_Base_Model_Jelly
