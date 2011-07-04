@@ -43,4 +43,57 @@ abstract class ChaCMS_Core_Meta_DomainManager
 
   }
 
+
+  /**
+   * Imports domain definitions into database
+   *
+   * Import file should define 2 fields, separated by a semi-colon. Its
+   * first line is not imported (header)
+   *
+   * @param string $csvfile_name           Name of the CSV file to read definitions from
+   * @param bool   $truncate_before_import Does the domain table needs truncating before import ?
+   *
+   * @return int number of imported domains
+   */
+  public function import_from_csvfile($csvfile_name, $truncate_before_import=FALSE)
+  {
+    if ($truncate_before_import)
+    {
+      $this->container
+           ->get('jelly.request')
+           ->query('chacms.model.domain')
+           ->delete();
+    }
+
+    $nb_imported = 0;
+
+    if (($handle = fopen($csvfile_name, "r")) !== FALSE)
+    {
+      $row_number = 1;
+
+      // discard header
+      $header = fgetcsv($handle, 1000, ";");
+
+      while (($data = fgetcsv($handle, 1000, ";")) !== FALSE)
+      {
+        $domain       = $this->container->get('chacms.model.domain');
+        $domain->code = $data[0];
+        $domain->name = $data[1];
+
+        try
+        {
+          $domain->save();
+
+          $nb_imported++;
+        }
+        catch (Exception $exception)
+        {
+        }
+      }
+      fclose($handle);
+    }
+
+    return $nb_imported;
+  }
+
 } // End class ChaCMS_Core_Meta_DomainManager
