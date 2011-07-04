@@ -110,11 +110,11 @@ abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
 
     if ($mode == 'get')
     {
-      return $this->_meta_model->link_manager()->get_linkee($this);
+      return $this->_meta_model->linkmanager()->get_linkee($this);
     }
 
     // set mode
-    return $this->_meta_model->link_manager()->set_linkee($this, $linkee);
+    return $this->_meta_model->linkmanager()->set_linkee($this, $linkee);
 
   }
 
