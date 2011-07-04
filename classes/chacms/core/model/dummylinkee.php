@@ -31,7 +31,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model/dummylinkee.php
  */
-abstract class ChaCMS_Core_Model_DummyLinkee extends ChaCMS_Model_Kohana implements ChaCMS_Interface_Linkable
+abstract class ChaCMS_Core_Model_DummyLinkee extends ChaCMS_Base_Model_Kohana implements ChaCMS_Interface_Linkable
 {
 
   /**
