@@ -34,19 +34,18 @@ defined('SYSPATH') OR die('No direct access allowed.');
 abstract class ChaCMS_Core_Meta_Model
 {
   protected $_domainmanager = NULL;
-  protected $_linkmanager = NULL;
+  protected $_linkmanager   = NULL;
 
 
   /**
    * Creates this occurence with optional link manager aggregate
    *
-   * @param ChaCMS_Meta_DomainManager $domainmanager mandatory link manager aggregate
-   * @param ChaCMS_Link_Manager $link_manager optional agregate
+   * @param ChaCMS_Meta_DomainManager $domainmanager mandatory domain manager aggregate
+   * @param ChaCMS_Meta_LinkManager   $linkmanager   mandatory link manager agregate
    *
    * @return null
    */
-  public function __construct(ChaCMS_Meta_DomainManager $domainmanager,
-                              ChaCMS_Meta_LinkManager $linkmanager = NULL)
+  public function __construct(ChaCMS_Meta_DomainManager $domainmanager, ChaCMS_Meta_LinkManager $linkmanager)
   {
     $this->domainmanager($domainmanager);
 
@@ -89,7 +88,7 @@ abstract class ChaCMS_Core_Meta_Model
   /**
    * Gets or sets meta linkmanager aggregate
    *
-   * @param ChaCMS_Meta_LinkManager $link_manager optional agregate (in set mode)
+   * @param ChaCMS_Meta_LinkManager $linkmanager optional agregate (in set mode)
    *
    * @return ChaCMS_Meta_LinkManager|null agregate (in get mode)
    *
