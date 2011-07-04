@@ -33,22 +33,56 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Meta_Model
 {
+  protected $_domainmanager = NULL;
   protected $_linkmanager = NULL;
 
 
   /**
    * Creates this occurence with optional link manager aggregate
    *
+   * @param ChaCMS_Meta_DomainManager $domainmanager mandatory link manager aggregate
    * @param ChaCMS_Link_Manager $link_manager optional agregate
    *
    * @return null
    */
-  public function __construct(ChaCMS_Meta_LinkManager $linkmanager = NULL)
+  public function __construct(ChaCMS_Meta_DomainManager $domainmanager,
+                              ChaCMS_Meta_LinkManager $linkmanager = NULL)
   {
+    $this->domainmanager($domainmanager);
+
     if ($linkmanager instanceof ChaCMS_Meta_LinkManager)
     {
       $this->linkmanager($linkmanager);
     }
+  }
+
+
+  /**
+   * Gets or sets meta domain manager aggregate
+   *
+   * @param ChaCMS_Meta_DomainManager $domainmanager optional domain manager aggregate (in set mode)
+   *
+   * @return ChaCMS_Meta_DomainManager|null aggregate (in get mode)
+   *
+   * @throws ChaCMS_Exception Can't find meta domain manager aggregate: aggregate hasn\'t been set before use.
+   */
+  public function domainmanager(ChaCMS_Meta_DomainManager $domainmanager = NULL)
+  {
+    if ($domainmanager == NULL)
+    {
+      // get mode
+      if ($this->_domainmanager == NULL)
+      {
+        throw new ChaCMS_Exception(
+          'Can\'t find domain manager aggregate: aggregate hasn\'t been set before use.'
+        );
+      }
+
+      return $this->_domainmanager;
+    }
+
+    // set mode
+    $this->_domainmanager = $domainmanager;
   }
 
 
@@ -84,7 +118,7 @@ abstract class ChaCMS_Core_Meta_Model
   /**
    * Global setter
    *
-   * only treats "container" setter (passes on to the link manager)
+   * only treats "container" setter (passes on to the domain and link managers)
    *
    * @param string $attr  attribute name to set
    * @param mixed  $value value to set
@@ -99,6 +133,10 @@ abstract class ChaCMS_Core_Meta_Model
         if ($this->_linkmanager instanceof ChaCMS_Meta_LinkManager)
         {
           $this->_linkmanager->container = $value;
+        }
+        if ($this->_domainmanager instanceof ChaCMS_Meta_DomainManager)
+        {
+          $this->_domainmanager->container = $value;
         }
       break;
 
