@@ -89,6 +89,18 @@ class ChaCMS_Core_Model_MenuItem extends ChaCMS_Base_Model_Jelly implements ChaC
                             'label' => 'Is the item published ?',
                             'name' => 'Is the item published ?',
                           )),
+              'parent' =>  new Jelly_Field_BelongsTo(array(
+                            'column'  => 'parent_id',
+                            'foreign' => 'ChaCMS_MenuItem.id',
+                            'in_db'   => TRUE,
+                            'label'   => 'Parent item',
+                            'name'    => 'Parent item',
+                          )),
+              'children' =>  new Jelly_Field_HasMany(array(
+                            'foreign' => 'ChaCMS_MenuItem.parent_id',
+                            'label'   => 'Children items',
+                            'name'    => 'Children items',
+                          )),
              )
          );
   }
