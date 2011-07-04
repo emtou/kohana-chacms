@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares ChaCMS_Core_Model
+ * Declares ChaCMS_Core_Meta_Model
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/model.php
  * @since     2011-06-30
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides ChaCMS_Core_Model
+ * Provides ChaCMS_Core_Meta_Model
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/model.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/model.php
  */
-abstract class ChaCMS_Core_Model
+abstract class ChaCMS_Core_Meta_Model
 {
   protected $_link_manager = NULL;
 
@@ -108,4 +108,4 @@ abstract class ChaCMS_Core_Model
     }
   }
 
-} // End class ChaCMS_Core_Model
+} // End class ChaCMS_Core_Meta_Model
