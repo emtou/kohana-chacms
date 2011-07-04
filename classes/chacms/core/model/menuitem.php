@@ -52,9 +52,6 @@ class ChaCMS_Core_Model_MenuItem extends ChaCMS_Base_Model_Jelly implements ChaC
               'menu' =>  new Jelly_Field_BelongsTo(array(
                             'column' => 'menu_id',
                             'foreign' => 'ChaCMS_Menu.id',
-                            'rules' => array(
-                                array('not_empty'),
-                            ),
                           )),
               'order' =>  new Jelly_Field_Integer (array(
                             'default' => 1,
@@ -92,8 +89,51 @@ class ChaCMS_Core_Model_MenuItem extends ChaCMS_Base_Model_Jelly implements ChaC
                             'label' => 'Is the item published ?',
                             'name' => 'Is the item published ?',
                           )),
+              'parent' =>  new Jelly_Field_BelongsTo(array(
+                            'column'  => 'parent_id',
+                            'foreign' => 'ChaCMS_MenuItem.id',
+                            'in_db'   => TRUE,
+                            'label'   => 'Parent item',
+                            'name'    => 'Parent item',
+                          )),
+              'children' =>  new Jelly_Field_HasMany(array(
+                            'foreign' => 'ChaCMS_MenuItem.parent_id',
+                            'label'   => 'Children items',
+                            'name'    => 'Children items',
+                          )),
              )
          );
+  }
+
+  /**
+   * Deletes this item and all its children
+   *
+   * @return  boolean
+   */
+  public function delete()
+  {
+    $db = Database::instance($this->meta()->db());
+
+    $db->begin();
+
+    try
+    {
+      foreach ($this->children as $item)
+      {
+        $item->delete();
+      }
+
+      parent::delete();
+
+      $db->commit();
+    }
+    catch (Database_Exception $e)
+    {
+      $db->rollback();
+      return FALSE;
+    }
+
+    return TRUE;
   }
 
 } // End class ChaCMS_Core_Model_MenuItem
