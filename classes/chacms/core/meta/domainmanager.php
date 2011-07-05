@@ -33,8 +33,8 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Meta_DomainManager
 {
-  protected $_domains = array();
-
+  protected $_domains      = array();
+  protected $_domain_codes = array();
 
   /**
    * Creates this instance
@@ -79,15 +79,31 @@ abstract class ChaCMS_Core_Meta_DomainManager
   /**
    * Returns a domain instance from internal container
    *
-   * @param int $domain_id ID of the domain
+   * @param int|string $domain ID or code of the domain
    *
    * @return Model_ChaCMS_Domain|NULL
+   *
+   * @throws ChaCMS_Exception Can't get domain: parameter not understood.
    */
-  public function get($domain_id)
+  public function get($domain)
   {
-    if (isset($this->_domains[ (string) $domain_id]))
-    {
-      return $this->_domains[ (string) $domain_id];
+    switch (TRUE) {
+      case (is_int($domain)):
+        if (isset($this->_domains[ (string) $domain]))
+        {
+          return $this->_domains[ (string) $domain];
+        }
+      break;
+
+      case (is_string($domain)):
+        if (isset($this->_domain_codes[$domain]))
+        {
+          return $this->get($this->_domain_codes[$domain]);
+        }
+      break;
+
+      default :
+        throw new ChaCMS_Exception('Can\'t get domain: parameter not understood.');
     }
 
     return NULL;
@@ -179,6 +195,7 @@ abstract class ChaCMS_Core_Meta_DomainManager
           }
 
           $this->_domains[ (string) $domain->id] = $domain;
+          $this->_domain_codes[$domain->code]    = $domain->id;
         }
       break;
 
