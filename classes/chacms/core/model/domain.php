@@ -72,6 +72,12 @@ class ChaCMS_Core_Model_Domain extends ChaCMS_Base_Model_Jelly
                                 array('not_empty'),
                             ),
                           )),
+              'rootfolder' =>  new Jelly_Field_BelongsTo(array(
+                            'column'  => 'rootfolder_id',
+                            'foreign' => 'ChaCMS_Folder.id',
+                            'label'   => 'Root folder',
+                            'name'    => 'Root folder',
+                          )),
              )
          );
   }
