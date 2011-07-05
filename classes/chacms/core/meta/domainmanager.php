@@ -80,6 +80,8 @@ abstract class ChaCMS_Core_Meta_DomainManager
    * @param bool $force     Impose reload if Domain already in internal container
    *
    * @return null
+   *
+   * @throws ChaCMS_Exception Can't load domain: domain with ID=:id does not exist.
    */
   protected function _load_from_id($domain_id, $force = FALSE)
   {
@@ -236,6 +238,8 @@ abstract class ChaCMS_Core_Meta_DomainManager
    * @param bool                           $force  Impose reload if Domain already in internal container
    *
    * @return null
+   *
+   * @throws ChaCMS_Exception Can't load domain: parameter not understood.
    */
   public function load($domain, $force = FALSE)
   {
