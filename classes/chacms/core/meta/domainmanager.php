@@ -84,6 +84,8 @@ abstract class ChaCMS_Core_Meta_DomainManager
         {
           $domain->save();
 
+          $this->load($domain);
+
           $nb_imported++;
         }
         catch (Exception $exception)
@@ -116,6 +118,48 @@ abstract class ChaCMS_Core_Meta_DomainManager
 
 
   /**
+   * Load a domain in the internal container
+   *
+   * @param int|Model_ChaCMS_Domain $domain Domain ID or Domain instance to load
+   * @param bool                    $force  Impose reload if Domain already in internal container
+   *
+   * @return null
+   */
+  public function load($domain, $force = FALSE)
+  {
+    switch (TRUE)
+    {
+      case ($domain instanceof Model_ChaCMS_Domain):
+        $this->_domains[ (string) $domain->id] = $domain;
+      break;
+
+      case (is_int($domain)):
+        if ($this->get($domain) === NULL
+            or $force)
+        {
+          $domain_id = $domain;
+          $domain    = $this->container
+                            ->get('chacms.model.domain', $domain_id);
+
+          if ( ! $domain->loaded())
+          {
+            throw new ChaCMS_Exception(
+              'Can\'t load domain: domain with ID=:id does not exist.',
+              array(':id' => $domain_id)
+            );
+          }
+
+          $this->_domains[ (string) $domain->id] = $domain;
+        }
+      break;
+
+      default :
+        throw new ChaCMS_Exception('Can\'t load domain: parameter not understood.');
+    }
+  }
+
+
+  /**
    * Load all domains from database in internal container
    *
    * @return null
@@ -131,7 +175,7 @@ abstract class ChaCMS_Core_Meta_DomainManager
 
     foreach ($all_domains as $domain)
     {
-      $this->_domains[ (string) ($domain->id)] = $domain;
+      $this->load($domain, TRUE);
     }
   }
 
