@@ -69,6 +69,17 @@ return array(
         ),
       ),
 
+      'folder' => array(
+        '_settings' => array(
+          'arguments'   => array('chacms_folder'),
+          'class'       => 'Jelly',
+          'constructor' => 'factory',
+          'methods'     => array(
+            array('meta_model', array('%chacms.meta.model%')),
+          ),
+        ),
+      ),
+
       'menu' => array(
         '_settings' => array(
           'arguments'   => array('chacms_menu'),
