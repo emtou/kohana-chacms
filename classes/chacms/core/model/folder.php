@@ -93,4 +93,36 @@ class ChaCMS_Core_Model_Folder extends ChaCMS_Base_Model_Jelly
          );
   }
 
+
+  /**
+   * Deletes this folder and all its children
+   *
+   * @return  boolean
+   */
+  public function delete()
+  {
+    $db = Database::instance($this->meta()->db());
+
+    $db->begin();
+
+    try
+    {
+      foreach ($this->children as $item)
+      {
+        $item->delete();
+      }
+
+      parent::delete();
+
+      $db->commit();
+    }
+    catch (Database_Exception $e)
+    {
+      $db->rollback();
+      return FALSE;
+    }
+
+    return TRUE;
+  }
+
 } // End class ChaCMS_Core_Model_Folder
