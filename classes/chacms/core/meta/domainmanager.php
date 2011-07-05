@@ -36,6 +36,73 @@ abstract class ChaCMS_Core_Meta_DomainManager
   protected $_domains      = array();
   protected $_domain_codes = array();
 
+
+  /**
+   * Load a domain in the internal container from its code
+   *
+   * @param string $domain_code Domain code to load in internal container
+   * @param bool   $force       Impose reload if Domain already in internal container
+   *
+   * @return null
+   *
+   * @throws ChaCMS_Exception Can't load domain: domain with code=:code does not exist.
+   */
+  protected function _load_from_code($domain_code, $force = FALSE)
+  {
+    if ($this->get($domain_code) === NULL
+        or $force)
+    {
+      $domain = $this->container
+                        ->get('jelly.request')
+                        ->query('chacms.model.domain')
+                        ->where('code', '=', $domain_code)
+                        ->limit(1)
+                        ->select();
+
+      if ( ! $domain->loaded())
+      {
+        throw new ChaCMS_Exception(
+          'Can\'t load domain: domain with code=:code does not exist.',
+          array(':code' => $domain_code)
+        );
+      }
+
+      $this->_domains[ (string) $domain->id] = $domain;
+      $this->_domain_codes[$domain->code]    = $domain->id;
+    }
+  }
+
+
+  /**
+   * Load a domain in the internal container from its id
+   *
+   * @param int  $domain_id Domain ID to load in internal container
+   * @param bool $force     Impose reload if Domain already in internal container
+   *
+   * @return null
+   */
+  protected function _load_from_id($domain_id, $force = FALSE)
+  {
+    if ($this->get($domain_id) === NULL
+        or $force)
+    {
+      $domain = $this->container
+                        ->get('chacms.model.domain', $domain_id);
+
+      if ( ! $domain->loaded())
+      {
+        throw new ChaCMS_Exception(
+          'Can\'t load domain: domain with ID=:id does not exist.',
+          array(':id' => $domain_id)
+        );
+      }
+
+      $this->_domains[ (string) $domain->id] = $domain;
+      $this->_domain_codes[$domain->code]    = $domain->id;
+    }
+  }
+
+
   /**
    * Creates this instance
    *
@@ -165,8 +232,8 @@ abstract class ChaCMS_Core_Meta_DomainManager
   /**
    * Load a domain in the internal container
    *
-   * @param int|Model_ChaCMS_Domain $domain Domain ID or Domain instance to load
-   * @param bool                    $force  Impose reload if Domain already in internal container
+   * @param int|string|Model_ChaCMS_Domain $domain Domain ID, code or instance to load in internal container
+   * @param bool                           $force  Impose reload if Domain already in internal container
    *
    * @return null
    */
@@ -179,24 +246,11 @@ abstract class ChaCMS_Core_Meta_DomainManager
       break;
 
       case (is_int($domain)):
-        if ($this->get($domain) === NULL
-            or $force)
-        {
-          $domain_id = $domain;
-          $domain    = $this->container
-                            ->get('chacms.model.domain', $domain_id);
+        $this->_load_from_id($domain, $force);
+      break;
 
-          if ( ! $domain->loaded())
-          {
-            throw new ChaCMS_Exception(
-              'Can\'t load domain: domain with ID=:id does not exist.',
-              array(':id' => $domain_id)
-            );
-          }
-
-          $this->_domains[ (string) $domain->id] = $domain;
-          $this->_domain_codes[$domain->code]    = $domain->id;
-        }
+      case (is_string($domain)):
+        $this->_load_from_code($domain, $force);
       break;
 
       default :
