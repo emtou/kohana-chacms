@@ -48,6 +48,35 @@ abstract class ChaCMS_Core_Meta_DomainManager
 
 
   /**
+   * Returns internal container
+   *
+   * @return array() all loaded models
+   */
+  public function all()
+  {
+    return $this->_domains;
+  }
+
+
+  /**
+   * Delete all domains
+   *
+   * @return null
+   */
+  public function delete_all()
+  {
+    $this->load_all();
+
+    foreach ($this->all() as $domain)
+    {
+      $domain->delete();
+    }
+
+    $this->unload_all();
+  }
+
+
+  /**
    * Imports domain definitions into database
    *
    * Import file should define 2 fields, separated by a semi-colon. Its
@@ -96,24 +125,6 @@ abstract class ChaCMS_Core_Meta_DomainManager
     }
 
     return $nb_imported;
-  }
-
-
-  /**
-   * Delete all domains
-   *
-   * @return null
-   */
-  public function delete_all()
-  {
-    $this->load_all();
-
-    foreach ($this->all() as $domain)
-    {
-      $domain->delete();
-    }
-
-    $this->unload_all();
   }
 
 
@@ -188,17 +199,6 @@ abstract class ChaCMS_Core_Meta_DomainManager
   public function unload_all()
   {
     $this->_domains = array();
-  }
-
-
-  /**
-   * Returns internal container
-   *
-   * @return array() all loaded models
-   */
-  public function all()
-  {
-    return $this->_domains;
   }
 
 } // End class ChaCMS_Core_Meta_DomainManager
