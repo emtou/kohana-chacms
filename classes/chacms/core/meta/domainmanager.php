@@ -33,6 +33,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Meta_DomainManager
 {
+  protected $_domains = array();
+
+
   /**
    * Creates this instance
    *
@@ -59,10 +62,7 @@ abstract class ChaCMS_Core_Meta_DomainManager
   {
     if ($truncate_before_import)
     {
-      $this->container
-           ->get('jelly.request')
-           ->query('chacms.model.domain')
-           ->delete();
+      $this->delete_all();
     }
 
     $nb_imported = 0;
@@ -94,6 +94,67 @@ abstract class ChaCMS_Core_Meta_DomainManager
     }
 
     return $nb_imported;
+  }
+
+
+  /**
+   * Delete all domains
+   *
+   * @return null
+   */
+  public function delete_all()
+  {
+    $this->load_all();
+
+    foreach ($this->all() as $domain)
+    {
+      $domain->delete();
+    }
+
+    $this->unload_all();
+  }
+
+
+  /**
+   * Load all domains from database in internal container
+   *
+   * @return null
+   */
+  public function load_all()
+  {
+    $this->unload_all();
+
+    $all_domains = $this->container
+                        ->get('jelly.request')
+                        ->query('chacms.model.domain')
+                        ->select();
+
+    foreach ($all_domains as $domain)
+    {
+      $this->_domains[ (string) ($domain->id)] = $domain;
+    }
+  }
+
+
+  /**
+   * Unload all domains in internal container
+   *
+   * @return null
+   */
+  public function unload_all()
+  {
+    $this->_domains = array();
+  }
+
+
+  /**
+   * Returns internal container
+   *
+   * @return array() all loaded models
+   */
+  public function all()
+  {
+    return $this->_domains;
   }
 
 } // End class ChaCMS_Core_Meta_DomainManager
