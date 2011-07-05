@@ -77,6 +77,24 @@ abstract class ChaCMS_Core_Meta_DomainManager
 
 
   /**
+   * Returns a domain instance from internal container
+   *
+   * @param int $domain_id ID of the domain
+   *
+   * @return Model_ChaCMS_Domain|NULL
+   */
+  public function get($domain_id)
+  {
+    if (isset($this->_domains[ (string) $domain_id]))
+    {
+      return $this->_domains[ (string) $domain_id];
+    }
+
+    return NULL;
+  }
+
+
+  /**
    * Imports domain definitions into database
    *
    * Import file should define 2 fields, separated by a semi-colon. Its
