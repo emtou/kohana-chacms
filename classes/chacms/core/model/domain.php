@@ -82,4 +82,33 @@ class ChaCMS_Core_Model_Domain extends ChaCMS_Base_Model_Jelly
          );
   }
 
+
+  /**
+   * Deletes this domain and its root folder (recursively)
+   *
+   * @return  boolean
+   */
+  public function delete()
+  {
+    $db = Database::instance($this->meta()->db());
+
+    $db->begin();
+
+    try
+    {
+      $this->rootfolder->delete();
+
+      parent::delete();
+
+      $db->commit();
+    }
+    catch (Database_Exception $e)
+    {
+      $db->rollback();
+      return FALSE;
+    }
+
+    return TRUE;
+  }
+
 } // End class ChaCMS_Core_Model_Domain
