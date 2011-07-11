@@ -60,6 +60,42 @@ abstract class ChaCMS_Core_Meta_FolderManager extends ChaCMS_Base_Manager
 
 
   /**
+   * Creates a Folder instance and register it
+   *
+   * @param array $fields array of Folder fields
+   *
+   * @return Model_ChaCMS_Folder created model
+   *
+   * @throws ChaCMS_Exception Can't create folder: :exception
+   */
+  public function create(array $fields)
+  {
+    try
+    {
+      $folder = $this->container->get('chacms.model.folder');
+
+      foreach ($fields as $field_name => $field_value)
+      {
+        $folder->$field_name = $field_value;
+      }
+
+      $folder->save();
+    }
+    catch (Exception $exception)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t create domain: :exception',
+        array(':exception' => $exception->getMessage())
+      );
+    }
+
+    $this->register($folder);
+
+    return $folder;
+  }
+
+
+  /**
    * Deletes all folders in database
    *
    * @return null
