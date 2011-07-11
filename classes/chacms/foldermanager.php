@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares ChaCMS_Meta_FolderManager
+ * Declares ChaCMS_FolderManager
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/meta/foldermanager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/foldermanager.php
  * @since     2011-06-30
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides ChaCMS_Meta_FolderManager
+ * Provides ChaCMS_FolderManager
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/meta/foldermanager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/foldermanager.php
  */
-class ChaCMS_Meta_FolderManager extends ChaCMS_Core_Meta_FolderManager
+class ChaCMS_FolderManager extends ChaCMS_Core_FolderManager
 {
 
-} // End class ChaCMS_Meta_FolderManager
+} // End class ChaCMS_FolderManager

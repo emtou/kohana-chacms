@@ -31,24 +31,24 @@ return array(
       ),
     ),
 
+    'foldermanager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_FolderManager',
+        'shared' => TRUE,
+      ),
+    ),
+
     'meta' => array(
       'model' => array(
         '_settings' => array(
           'arguments'   => array(
                               '%chacms.domainmanager%',
-                              '%chacms.meta.foldermanager%',
+                              '%chacms.foldermanager%',
                               '%chacms.meta.linkmanager%'
                            ),
           'constructor' => '',
           'class'       => 'ChaCMS_Meta_Model',
           'shared'      => TRUE,
-        ),
-      ),
-
-      'foldermanager' => array(
-        '_settings' => array(
-          'class'  => 'ChaCMS_Meta_FolderManager',
-          'shared' => TRUE,
         ),
       ),
 

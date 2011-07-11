@@ -42,11 +42,12 @@ abstract class ChaCMS_Core_Meta_Model
    * Creates this occurence with optional link manager aggregate
    *
    * @param ChaCMS_DomainManager    $domainmanager mandatory domain manager aggregate
+   * @param ChaCMS_FolderManager    $foldermanager mandatory folder manager aggregate
    * @param ChaCMS_Meta_LinkManager $linkmanager   mandatory link manager agregate
    *
    * @return null
    */
-  public function __construct(ChaCMS_DomainManager $domainmanager, ChaCMS_Meta_FolderManager $foldermanager, ChaCMS_Meta_LinkManager $linkmanager)
+  public function __construct(ChaCMS_DomainManager $domainmanager, ChaCMS_FolderManager $foldermanager, ChaCMS_Meta_LinkManager $linkmanager)
   {
     $this->domainmanager($domainmanager);
 
@@ -88,15 +89,15 @@ abstract class ChaCMS_Core_Meta_Model
 
 
   /**
-   * Gets or sets meta folder manager aggregate
+   * Gets or sets folder manager aggregate
    *
-   * @param ChaCMS_Meta_FolderManager $foldermanager optional folder manager aggregate (in set mode)
+   * @param ChaCMS_FolderManager $foldermanager optional folder manager aggregate (in set mode)
    *
-   * @return ChaCMS_Meta_FolderManager|null aggregate (in get mode)
+   * @return ChaCMS_FolderManager|null aggregate (in get mode)
    *
-   * @throws ChaCMS_Exception Can't find meta folder manager aggregate: aggregate hasn\'t been set before use.
+   * @throws ChaCMS_Exception Can't find folder manager aggregate: aggregate hasn\'t been set before use.
    */
-  public function foldermanager(ChaCMS_Meta_FolderManager $foldermanager = NULL)
+  public function foldermanager(ChaCMS_FolderManager $foldermanager = NULL)
   {
     if ($foldermanager == NULL)
     {
@@ -104,7 +105,7 @@ abstract class ChaCMS_Core_Meta_Model
       if ($this->_foldermanager == NULL)
       {
         throw new ChaCMS_Exception(
-          'Can\'t find folder manager aggregate: aggregate hasn\'t been set before use.'
+          'Can\'t folder manager aggregate: aggregate hasn\'t been set before use.'
         );
       }
 
