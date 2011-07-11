@@ -31,7 +31,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
  * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/foldermanager.php
  */
-abstract class ChaCMS_Core_Meta_FolderManager
+abstract class ChaCMS_Core_Meta_FolderManager extends ChaCMS_Base_Manager
 {
   protected $_folders      = array();
   protected $_folder_codes = array();
