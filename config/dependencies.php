@@ -24,24 +24,24 @@ return array(
       'constructor' => '',
     ),
 
+    'domainmanager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_DomainManager',
+        'shared' => TRUE,
+      ),
+    ),
+
     'meta' => array(
       'model' => array(
         '_settings' => array(
           'arguments'   => array(
-                              '%chacms.meta.domainmanager%',
+                              '%chacms.domainmanager%',
                               '%chacms.meta.foldermanager%',
                               '%chacms.meta.linkmanager%'
                            ),
           'constructor' => '',
           'class'       => 'ChaCMS_Meta_Model',
           'shared'      => TRUE,
-        ),
-      ),
-
-      'domainmanager' => array(
-        '_settings' => array(
-          'class'  => 'ChaCMS_Meta_DomainManager',
-          'shared' => TRUE,
         ),
       ),
 

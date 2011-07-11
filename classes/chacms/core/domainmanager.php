@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares ChaCMS_Core_Meta_DomainManager
+ * Declares ChaCMS_Core_DomainManager
  *
  * PHP version 5
  *
@@ -11,14 +11,14 @@
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/domainmanager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/domainmanager.php
  * @since     2011-06-30
  */
 
 defined('SYSPATH') OR die('No direct access allowed.');
 
 /**
- * Provides ChaCMS_Core_Meta_DomainManager
+ * Provides ChaCMS_Core_DomainManager
  *
  * PHP version 5
  *
@@ -29,9 +29,9 @@ defined('SYSPATH') OR die('No direct access allowed.');
  * @author    mtou <mtou@charougna.com>
  * @copyright 2011 mtou
  * @license   http://www.debian.org/misc/bsd.license BSD License (3 Clause)
- * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/meta/domainmanager.php
+ * @link      https://github.com/emtou/kohana-chacms/tree/master/classes/chacms/core/domainmanager.php
  */
-abstract class ChaCMS_Core_Meta_DomainManager extends ChaCMS_Base_Manager
+abstract class ChaCMS_Core_DomainManager extends ChaCMS_Base_Manager
 {
   protected $_domains      = array();
   protected $_domain_codes = array();
@@ -388,4 +388,4 @@ abstract class ChaCMS_Core_Meta_DomainManager extends ChaCMS_Base_Manager
     $this->_domain_codes = array();
   }
 
-} // End class ChaCMS_Core_Meta_DomainManager
+} // End class ChaCMS_Core_DomainManager
