@@ -145,7 +145,19 @@ abstract class ChaCMS_Core_Meta_DomainManager extends ChaCMS_Base_Manager
         {
           $domain->save();
 
+          $rootfolder         = $this->container->get('chacms.model.folder');
+          $rootfolder->code   = $domain->code.'_root';
+          $rootfolder->name   = 'r';
+          $rootfolder->domain = $domain;
+          $rootfolder->parent = 0;
+
+          $rootfolder->save();
+
+          $domain->rootfolder = $rootfolder;
+          $domain->save();
+
           $this->register($domain);
+          $this->meta()->foldermanager()->register($rootfolder);
 
           $nb_imported++;
         }
