@@ -69,7 +69,6 @@ class ChaCMS_Core_Model_Folder extends ChaCMS_Base_Model_Jelly
                             'rules' => array(
                                 array('max_length', array(':value', 128)),
                                 array('mb_check_encoding', array(':value', 'UTF-8')),
-                                array('not_empty'),
                             ),
                           )),
               'domain' =>  new Jelly_Field_BelongsTo(array(
