@@ -216,7 +216,7 @@ abstract class ChaCMS_Core_Meta_DomainManager
    */
   public function load_by_code($domain_code, $force = FALSE)
   {
-    if ( ! isset($this->_domain_codes[$domain->code])
+    if ( ! isset($this->_domain_codes[$domain_code])
          or $force)
     {
       $domain = $this->container
@@ -231,8 +231,7 @@ abstract class ChaCMS_Core_Meta_DomainManager
         return NULL;
       }
 
-      $this->_domains[ (string) $domain->id] = $domain;
-      $this->_domain_codes[$domain->code]    = $domain->id;
+      $this->register($domain);
     }
 
     return $this->_domain_codes[$domain_code];
@@ -260,8 +259,7 @@ abstract class ChaCMS_Core_Meta_DomainManager
         return NULL;
       }
 
-      $this->_domains[ (string) $domain->id] = $domain;
-      $this->_domain_codes[$domain->code]    = $domain->id;
+      $this->register($domain);
     }
 
     return $this->_domains[ (string) $domain_id];
