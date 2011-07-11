@@ -33,35 +33,35 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Base_Manager
 {
-  protected $_meta = NULL;
+  protected $_cmsmeta = NULL;
 
 
   /**
    * Gets or sets meta aggregate
    *
-   * @param ChaCMS_Meta_Model $meta optional meta aggregate (in set mode)
+   * @param ChaCMS_CMSMeta $cmsmeta optional meta aggregate (in set mode)
    *
-   * @return ChaCMS_Meta_Model|NULL meta aggregate (in get mode)
+   * @return ChaCMS_CMSMeta|NULL CMSMeta aggregate (in get mode)
    *
-   * @throws ChaCMS_Exception Can't find meta aggregate: aggregate hasn\'t been set before use.
+   * @throws ChaCMS_Exception Can't find CMSMeta aggregate: aggregate hasn\'t been set before use.
    */
-  public function meta(ChaCMS_Meta_Model $meta = NULL)
+  public function cmsmeta(ChaCMS_CMSMeta $cmsmeta = NULL)
   {
-    if ($meta == NULL)
+    if ($cmsmeta == NULL)
     {
       // get mode
-      if ($this->_meta == NULL)
+      if ($this->_cmsmeta == NULL)
       {
         throw new ChaCMS_Exception(
           'Can\'t find meta aggregate: aggregate hasn\'t been set before use.'
         );
       }
 
-      return $this->_meta;
+      return $this->_cmsmeta;
     }
 
     // set mode
-    $this->_meta = $meta;
+    $this->_cmsmeta = $cmsmeta;
   }
 
 } // End class ChaCMS_Core_Base_Manager

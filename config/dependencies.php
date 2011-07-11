@@ -24,6 +24,19 @@ return array(
       'constructor' => '',
     ),
 
+    'cmsmeta' => array(
+      '_settings' => array(
+        'arguments'   => array(
+                            '%chacms.domainmanager%',
+                            '%chacms.foldermanager%',
+                            '%chacms.linkmanager%'
+                         ),
+        'constructor' => '',
+        'class'       => 'ChaCMS_CMSMeta',
+        'shared'      => TRUE,
+      ),
+    ),
+
     'domainmanager' => array(
       '_settings' => array(
         'class'  => 'ChaCMS_DomainManager',
@@ -35,21 +48,6 @@ return array(
       '_settings' => array(
         'class'  => 'ChaCMS_FolderManager',
         'shared' => TRUE,
-      ),
-    ),
-
-    'meta' => array(
-      'model' => array(
-        '_settings' => array(
-          'arguments'   => array(
-                              '%chacms.domainmanager%',
-                              '%chacms.foldermanager%',
-                              '%chacms.linkmanager%'
-                           ),
-          'constructor' => '',
-          'class'       => 'ChaCMS_Meta_Model',
-          'shared'      => TRUE,
-        ),
       ),
     ),
 
@@ -83,7 +81,7 @@ return array(
           'class'       => 'Jelly',
           'constructor' => 'factory',
           'methods'     => array(
-            array('meta_model', array('%chacms.meta.model%')),
+            array('cmsmeta', array('%chacms.cmsmeta%')),
           ),
         ),
       ),
@@ -94,7 +92,7 @@ return array(
           'class'       => 'Jelly',
           'constructor' => 'factory',
           'methods'     => array(
-            array('meta_model', array('%chacms.meta.model%')),
+            array('cmsmeta', array('%chacms.cmsmeta%')),
           ),
         ),
       ),
@@ -105,7 +103,7 @@ return array(
           'class'       => 'Jelly',
           'constructor' => 'factory',
           'methods'     => array(
-            array('meta_model', array('%chacms.meta.model%')),
+            array('cmsmeta', array('%chacms.cmsmeta%')),
           ),
         ),
       ),

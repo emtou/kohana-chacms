@@ -93,7 +93,7 @@ abstract class ChaCMS_Core_DomainManager extends ChaCMS_Base_Manager
 
     try
     {
-      $rootfolder = $this->meta()->foldermanager()->create(
+      $rootfolder = $this->cmsmeta()->foldermanager()->create(
           array(
             'code'   => $domain->code.'_root',
             'domain' => $domain,
