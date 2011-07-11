@@ -60,6 +60,82 @@ abstract class ChaCMS_Core_Meta_DomainManager extends ChaCMS_Base_Manager
 
 
   /**
+   * Creates a Domain instance and register it
+   *
+   * @param array $fields array of Domain fields
+   *
+   * @return Model_ChaCMS_Domain created model
+   *
+   * @throws ChaCMS_Exception Can't create domain: :exception
+   * @throws ChaCMS_Exception Can't create root folder for domain «:domaincode»: :exception
+   * @throws ChaCMS_Exception Can't attach root folder to domain «:domaincode»: :exception
+   */
+  public function create(array $fields)
+  {
+    try
+    {
+      $domain = $this->container->get('chacms.model.domain');
+
+      foreach ($fields as $field_name => $field_value)
+      {
+        $domain->$field_name = $field_value;
+      }
+
+      $domain->save();
+    }
+    catch (Exception $exception)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t create domain: :exception',
+        array(':exception' => $exception->getMessage())
+      );
+    }
+
+    try
+    {
+      $rootfolder = $this->meta()->foldermanager()->create(
+          array(
+            'code'   => $domain->code.'_root',
+            'domain' => $domain,
+            'name'   => '',
+            'parent' => 0,
+          )
+      );
+    }
+    catch (Exception $exception)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t create root folder for domain «:domaincode»: :exception',
+        array(
+          ':domaincode' => $domain->code,
+          ':exception'  => $exception->getMessage()
+        )
+      );
+    }
+
+    try
+    {
+      $domain->rootfolder = $rootfolder;
+      $domain->save();
+    }
+    catch (Exception $exception)
+    {
+      throw new ChaCMS_Exception(
+        'Can\'t attach root folder to domain «:domaincode»: :exception',
+        array(
+          ':domaincode' => $domain->code,
+          ':exception'  => $exception->getMessage()
+        )
+      );
+    }
+
+    $this->register($domain);
+
+    return $domain;
+  }
+
+
+  /**
    * Deletes all domains in database
    *
    * @return null
@@ -137,27 +213,14 @@ abstract class ChaCMS_Core_Meta_DomainManager extends ChaCMS_Base_Manager
 
       while (($data = fgetcsv($handle, 1000, ";")) !== FALSE)
       {
-        $domain       = $this->container->get('chacms.model.domain');
-        $domain->code = $data[0];
-        $domain->name = $data[1];
-
         try
         {
-          $domain->save();
-
-          $rootfolder         = $this->container->get('chacms.model.folder');
-          $rootfolder->code   = $domain->code.'_root';
-          $rootfolder->name   = '';
-          $rootfolder->domain = $domain;
-          $rootfolder->parent = 0;
-
-          $rootfolder->save();
-
-          $domain->rootfolder = $rootfolder;
-          $domain->save();
-
-          $this->register($domain);
-          $this->meta()->foldermanager()->register($rootfolder);
+          $this->create(
+              array(
+                'code' => $data[0],
+                'name' => $data[1],
+              )
+          );
 
           $nb_imported++;
         }
