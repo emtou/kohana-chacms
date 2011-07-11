@@ -34,6 +34,7 @@ defined('SYSPATH') OR die('No direct access allowed.');
 abstract class ChaCMS_Core_Meta_Model
 {
   protected $_domainmanager = NULL;
+  protected $_foldermanager = NULL;
   protected $_linkmanager   = NULL;
 
 
@@ -45,14 +46,13 @@ abstract class ChaCMS_Core_Meta_Model
    *
    * @return null
    */
-  public function __construct(ChaCMS_Meta_DomainManager $domainmanager, ChaCMS_Meta_LinkManager $linkmanager)
+  public function __construct(ChaCMS_Meta_DomainManager $domainmanager, ChaCMS_Meta_FolderManager $foldermanager, ChaCMS_Meta_LinkManager $linkmanager)
   {
     $this->domainmanager($domainmanager);
 
-    if ($linkmanager instanceof ChaCMS_Meta_LinkManager)
-    {
-      $this->linkmanager($linkmanager);
-    }
+    $this->foldermanager($foldermanager);
+
+    $this->linkmanager($linkmanager);
   }
 
 
@@ -82,6 +82,39 @@ abstract class ChaCMS_Core_Meta_Model
 
     // set mode
     $this->_domainmanager = $domainmanager;
+
+    $this->_domainmanager->meta($this);
+  }
+
+
+  /**
+   * Gets or sets meta folder manager aggregate
+   *
+   * @param ChaCMS_Meta_FolderManager $foldermanager optional folder manager aggregate (in set mode)
+   *
+   * @return ChaCMS_Meta_FolderManager|null aggregate (in get mode)
+   *
+   * @throws ChaCMS_Exception Can't find meta folder manager aggregate: aggregate hasn\'t been set before use.
+   */
+  public function foldermanager(ChaCMS_Meta_FolderManager $foldermanager = NULL)
+  {
+    if ($foldermanager == NULL)
+    {
+      // get mode
+      if ($this->_foldermanager == NULL)
+      {
+        throw new ChaCMS_Exception(
+          'Can\'t find folder manager aggregate: aggregate hasn\'t been set before use.'
+        );
+      }
+
+      return $this->_foldermanager;
+    }
+
+    // set mode
+    $this->_foldermanager = $foldermanager;
+
+    $this->_foldermanager->meta($this);
   }
 
 
@@ -111,6 +144,8 @@ abstract class ChaCMS_Core_Meta_Model
 
     // set mode
     $this->_linkmanager = $linkmanager;
+
+    $this->_linkmanager->meta($this);
   }
 
 

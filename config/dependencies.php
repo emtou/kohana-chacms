@@ -29,6 +29,7 @@ return array(
         '_settings' => array(
           'arguments'   => array(
                               '%chacms.meta.domainmanager%',
+                              '%chacms.meta.foldermanager%',
                               '%chacms.meta.linkmanager%'
                            ),
           'constructor' => '',
@@ -40,6 +41,13 @@ return array(
       'domainmanager' => array(
         '_settings' => array(
           'class'  => 'ChaCMS_Meta_DomainManager',
+          'shared' => TRUE,
+        ),
+      ),
+
+      'foldermanager' => array(
+        '_settings' => array(
+          'class'  => 'ChaCMS_Meta_FolderManager',
           'shared' => TRUE,
         ),
       ),
