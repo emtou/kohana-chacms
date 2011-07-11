@@ -163,15 +163,10 @@ abstract class ChaCMS_Core_Meta_Model
   {
     switch ($attr) {
       case 'container';
-        $this->container = $value;
-        if ($this->_linkmanager instanceof ChaCMS_Meta_LinkManager)
-        {
-          $this->_linkmanager->container = $value;
-        }
-        if ($this->_domainmanager instanceof ChaCMS_Meta_DomainManager)
-        {
-          $this->_domainmanager->container = $value;
-        }
+        $this->container                 = $value;
+        $this->_domainmanager->container = $value;
+        $this->_foldermanager->container = $value;
+        $this->_linkmanager->container   = $value;
       break;
 
       default :
