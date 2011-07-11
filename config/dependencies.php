@@ -44,19 +44,19 @@ return array(
           'arguments'   => array(
                               '%chacms.domainmanager%',
                               '%chacms.foldermanager%',
-                              '%chacms.meta.linkmanager%'
+                              '%chacms.linkmanager%'
                            ),
           'constructor' => '',
           'class'       => 'ChaCMS_Meta_Model',
           'shared'      => TRUE,
         ),
       ),
+    ),
 
-      'linkmanager' => array(
-        '_settings' => array(
-          'class'  => 'ChaCMS_Meta_LinkManager',
-          'shared' => TRUE,
-        ),
+    'linkmanager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_LinkManager',
+        'shared' => TRUE,
       ),
     ),
 

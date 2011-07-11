@@ -41,13 +41,13 @@ abstract class ChaCMS_Core_Meta_Model
   /**
    * Creates this occurence with optional link manager aggregate
    *
-   * @param ChaCMS_DomainManager    $domainmanager mandatory domain manager aggregate
-   * @param ChaCMS_FolderManager    $foldermanager mandatory folder manager aggregate
-   * @param ChaCMS_Meta_LinkManager $linkmanager   mandatory link manager agregate
+   * @param ChaCMS_DomainManager $domainmanager mandatory domain manager aggregate
+   * @param ChaCMS_FolderManager $foldermanager mandatory folder manager aggregate
+   * @param ChaCMS_LinkManager   $linkmanager   mandatory link manager agregate
    *
    * @return null
    */
-  public function __construct(ChaCMS_DomainManager $domainmanager, ChaCMS_FolderManager $foldermanager, ChaCMS_Meta_LinkManager $linkmanager)
+  public function __construct(ChaCMS_DomainManager $domainmanager, ChaCMS_FolderManager $foldermanager, ChaCMS_LinkManager $linkmanager)
   {
     $this->domainmanager($domainmanager);
 
@@ -120,15 +120,15 @@ abstract class ChaCMS_Core_Meta_Model
 
 
   /**
-   * Gets or sets meta linkmanager aggregate
+   * Gets or sets linkmanager aggregate
    *
-   * @param ChaCMS_Meta_LinkManager $linkmanager optional agregate (in set mode)
+   * @param ChaCMS_LinkManager $linkmanager link manager optional agregate (in set mode)
    *
-   * @return ChaCMS_Meta_LinkManager|null agregate (in get mode)
+   * @return ChaCMS_LinkManager|null agregate (in get mode)
    *
-   * @throws ChaCMS_Exception Can't find meta link manager aggregate: aggregate hasn\'t been set before use.
+   * @throws ChaCMS_Exception Can't find link manager aggregate: aggregate hasn\'t been set before use.
    */
-  public function linkmanager(ChaCMS_Meta_LinkManager $linkmanager = NULL)
+  public function linkmanager(ChaCMS_LinkManager $linkmanager = NULL)
   {
     if ($linkmanager == NULL)
     {
