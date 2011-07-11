@@ -33,37 +33,37 @@ defined('SYSPATH') OR die('No direct access allowed.');
  */
 abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
 {
-  protected $_meta_model = NULL;
+  protected $_cmsmeta = NULL;
 
 
   /**
-   * Gets or sets ChaCMS_Meta_Model aggregate
+   * Gets or sets CMSMeta aggregate
    *
-   * @param ChaCMS_Meta_Model $meta_model optional agregate (in set mode)
+   * @param ChaCMS_CMSMeta $cmsmeta optional CMSMeta agregate (in set mode)
    *
-   * @return ChaCMS_Meta_Model|null agregate (in get mode)
+   * @return ChaCMS_CMSMeta|null agregate (in get mode)
    *
-   * @see ChaCMS_Core_Interface_Linker::meta_model()
+   * @see ChaCMS_Core_Interface_Linker::cmsmeta()
    *
-   * @throws ChaCMS_Exception Can't find meta model aggregate: aggregate hasn\'t been set before use.
+   * @throws ChaCMS_Exception Can't find CMSMeta aggregate: aggregate hasn\'t been set before use.
    */
-  public function meta_model(ChaCMS_Meta_Model $meta_model = NULL)
+  public function cmsmeta(ChaCMS_CMSMeta $cmsmeta = NULL)
   {
-    if ($meta_model == NULL)
+    if ($cmsmeta == NULL)
     {
       // get mode
-      if ($this->_meta_model == NULL)
+      if ($this->_cmsmeta == NULL)
       {
         throw new ChaCMS_Exception(
-          'Can\'t find meta model aggregate: aggregate hasn\'t been set before use.'
+          'Can\'t find CMSMeta aggregate: aggregate hasn\'t been set before use.'
         );
       }
 
-      return $this->_meta_model;
+      return $this->_cmsmeta;
     }
 
     // set mode
-    $this->_meta_model = $meta_model;
+    $this->_cmsmeta = $cmsmeta;
   }
 
 
@@ -100,21 +100,21 @@ abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
       );
     }
 
-    if ( ! $this->_meta_model instanceof ChaCMS_Meta_Model)
+    if ( ! $this->_cmsmeta instanceof ChaCMS_CMSMeta)
     {
       throw new ChaCMS_Exception(
-        'Can\'t :get_or_set linkee: meta model aggregate hasn\'t been set.',
+        'Can\'t :get_or_set linkee: CMSMeta aggregate hasn\'t been set.',
         array(':get_or_set', $mode)
       );
     }
 
     if ($mode == 'get')
     {
-      return $this->_meta_model->linkmanager()->get_linkee($this);
+      return $this->cmsmeta->linkmanager()->get_linkee($this);
     }
 
     // set mode
-    return $this->_meta_model->linkmanager()->set_linkee($this, $linkee);
+    return $this->cmsmeta->linkmanager()->set_linkee($this, $linkee);
 
   }
 
@@ -134,9 +134,9 @@ abstract class ChaCMS_Core_Base_Model_Jelly extends Jelly_Model
     switch ($attr) {
       case 'container';
         $this->container = $value;
-        if ($this->_meta_model instanceof ChaCMS_Meta_Model)
+        if ($this->_cmsmeta instanceof ChaCMS_CMSMeta)
         {
-          $this->_meta_model->container = $value;
+          $this->_cmsmeta->container = $value;
         }
       break;
 

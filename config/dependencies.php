@@ -24,31 +24,37 @@ return array(
       'constructor' => '',
     ),
 
-    'meta' => array(
-      'model' => array(
-        '_settings' => array(
-          'arguments'   => array(
-                              '%chacms.meta.domainmanager%',
-                              '%chacms.meta.linkmanager%'
-                           ),
-          'constructor' => '',
-          'class'       => 'ChaCMS_Meta_Model',
-          'shared'      => TRUE,
-        ),
+    'cmsmeta' => array(
+      '_settings' => array(
+        'arguments'   => array(
+                            '%chacms.domainmanager%',
+                            '%chacms.foldermanager%',
+                            '%chacms.linkmanager%'
+                         ),
+        'constructor' => '',
+        'class'       => 'ChaCMS_CMSMeta',
+        'shared'      => TRUE,
       ),
+    ),
 
-      'domainmanager' => array(
-        '_settings' => array(
-          'class'  => 'ChaCMS_Meta_DomainManager',
-          'shared' => TRUE,
-        ),
+    'domainmanager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_DomainManager',
+        'shared' => TRUE,
       ),
+    ),
 
-      'linkmanager' => array(
-        '_settings' => array(
-          'class'  => 'ChaCMS_Meta_LinkManager',
-          'shared' => TRUE,
-        ),
+    'foldermanager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_FolderManager',
+        'shared' => TRUE,
+      ),
+    ),
+
+    'linkmanager' => array(
+      '_settings' => array(
+        'class'  => 'ChaCMS_LinkManager',
+        'shared' => TRUE,
       ),
     ),
 
@@ -69,13 +75,24 @@ return array(
         ),
       ),
 
+      'folder' => array(
+        '_settings' => array(
+          'arguments'   => array('chacms_folder'),
+          'class'       => 'Jelly',
+          'constructor' => 'factory',
+          'methods'     => array(
+            array('cmsmeta', array('%chacms.cmsmeta%')),
+          ),
+        ),
+      ),
+
       'menu' => array(
         '_settings' => array(
           'arguments'   => array('chacms_menu'),
           'class'       => 'Jelly',
           'constructor' => 'factory',
           'methods'     => array(
-            array('meta_model', array('%chacms.meta.model%')),
+            array('cmsmeta', array('%chacms.cmsmeta%')),
           ),
         ),
       ),
@@ -86,7 +103,7 @@ return array(
           'class'       => 'Jelly',
           'constructor' => 'factory',
           'methods'     => array(
-            array('meta_model', array('%chacms.meta.model%')),
+            array('cmsmeta', array('%chacms.cmsmeta%')),
           ),
         ),
       ),

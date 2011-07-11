@@ -34,12 +34,12 @@ defined('SYSPATH') OR die('No direct access allowed.');
 interface ChaCMS_Core_Interface_Linker
 {
   /**
-   * Gets or sets ChaCMS_Meta_Model aggregate
+   * Gets or sets CMSMeta aggregate
    *
-   * @param ChaCMS_Meta_Model $meta_model optional agregate (in set mode)
+   * @param ChaCMS_CMSMeta $cmsmeta optional CMSMeta agregate (in set mode)
    *
-   * @return ChaCMS_Meta_Model|null agregate (in get mode)
+   * @return ChaCMS_CMSMeta|null agregate (in get mode)
    */
-  public function meta_model(ChaCMS_Meta_Model $meta_model = NULL);
+  public function cmsmeta(ChaCMS_CMSMeta $cmsmeta = NULL);
 
 } // End class ChaCMS_Core_Interface_Linker

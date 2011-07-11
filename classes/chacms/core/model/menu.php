@@ -82,7 +82,7 @@ class ChaCMS_Core_Model_Menu extends ChaCMS_Base_Model_Jelly
 
 
   /**
-   * Deletes this menu and all its elements
+   * Deletes this menu and its rootitem (recursively)
    *
    * @return  boolean
    */
