@@ -151,6 +151,7 @@ abstract class ChaCMS_Core_Meta_DomainManager extends ChaCMS_Base_Manager
         }
         catch (Exception $exception)
         {
+          throw $exception;
         }
       }
       fclose($handle);
